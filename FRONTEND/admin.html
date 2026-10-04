@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CartCrush - Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar Navigation -->
+  <nav class="navbar">
+    <h2>CartCrush - Admin Panel</h2>
+    <div>
+      <a href="home.html" target="_blank" class="nav-link">View Store ↗</a>
+    </div>
+  </nav>
+
+  <!-- Main Admin Wrapper -->
+  <div class="admin-wrapper">
+
+    <!-- Admin Stats Summary Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <p id="statTotalRevenue" class="stat-value revenue">Rs. 0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <p id="statTotalOrders" class="stat-value orders">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Products</h3>
+        <p id="statTotalProducts" class="stat-value products">0</p>
+      </div>
+    </div>
+
+    <!-- Add Product Card -->
+    <div class="admin-card">
+      <h3 class="card-title">Add New Product</h3>
+      
+      <form id="addProductForm" enctype="multipart/form-data">
+        <div class="form-grid">
+          
+          <!-- Product Name -->
+          <div class="form-group">
+            <label for="pName">Product Name *</label>
+            <input type="text" id="pName" class="search-input" placeholder="e.g. Wireless Mouse" required>
+          </div>
+
+          <!-- Price & Currency Input Group -->
+          <div class="form-group">
+            <label for="pPrice">Price & Input Currency *</label>
+            <div class="price-input-group">
+              <input type="number" id="pPrice" class="search-input" placeholder="e.g. 1500" required step="0.01">
+              <select id="pCurrency" class="category-select">
+                <option value="PKR">PKR (Rs.)</option>
+                <option value="USD">USD ($)</option>
+                <option value="AED">AED</option>
+                <option value="SAR">SAR</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
+              </select>
+            </div>
+            <small id="convertedPkrHint" class="hint-text"></small>
+          </div>
+
+          <!-- Category -->
+          <div class="form-group">
+            <label for="pCategory">Category</label>
+            <input type="text" id="pCategory" class="search-input" placeholder="e.g. Electronics">
+          </div>
+
+        </div>
+
+        <!-- Description -->
+        <div class="form-group full-width" style="margin-top: 1rem;">
+          <label for="pDescription">Description</label>
+          <textarea id="pDescription" class="search-input textarea-input" placeholder="Brief details about product..."></textarea>
+        </div>
+
+        <!-- Dual Image Box -->
+        <div class="dual-image-box">
+          <h4>Product Image Options (Choose Any One)</h4>
+          
+          <div class="dual-image-grid">
+            <div class="image-option">
+              <label for="pImageFile">Option A: Upload Image File</label>
+              <input type="file" id="pImageFile" accept="image/*">
+            </div>
+
+            <div class="divider-text">— OR —</div>
+
+            <div class="image-option">
+              <label for="pImageUrl">Option B: Image Web URL</label>
+              <input type="url" id="pImageUrl" class="search-input" placeholder="https://example.com/image.jpg">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Save Product</button>
+      </form>
+    </div>
+
+    <!-- Product Inventory Table Card -->
+    <div class="admin-card">
+      <div class="table-header">
+        <div class="products-header-actions">
+          <h2>Products List</h2>
+          
+          <div class="products-filter-controls">
+            <!-- Search Input -->
+            <input 
+              type="text" 
+              id="productSearchInput" 
+              placeholder="Search product..." 
+              oninput="filterAdminProducts()"
+            />
+
+            <!-- Category Filter -->
+            <select 
+              id="productCategoryFilter" 
+              onchange="filterAdminProducts()"
+            >
+              <option value="ALL">All Categories</option>
+              <option value="electronics">Electronics</option>
+              <option value="softwares">Softwares</option>
+              <option value="accessories">Accessories</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Currency Converter Switcher -->
+        <div class="currency-switcher">
+          <label for="adminCurrencySelect">Display Currency:</label>
+          <select id="adminCurrencySelect" class="category-select">
+            <option value="PKR">PKR (Rs.) - Base</option>
+            <option value="USD">USD ($)</option>
+            <option value="AED">AED (AED)</option>
+            <option value="SAR">SAR (SAR)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Base Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="adminProductsTableBody">
+            <!-- Dynamic Products rendered by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ORDERS MANAGEMENT SECTION -->
+    <div class="admin-card">
+      <div class="section-header">
+        <h2>📦 Orders Management</h2>
+        <button onclick="loadAdminOrders()" class="refresh-btn">
+          🔄 Refresh Orders
+        </button>
+      </div>
+
+      <!-- ORDERS TABLE -->
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <!-- Dynamic Orders rendered by admin.js -->
+          <tbody id="adminOrdersTableBody">
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 1.5rem; color: #64748b;">
+                Loading orders...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

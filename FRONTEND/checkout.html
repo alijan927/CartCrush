@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CartCrush - Checkout</title>
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    /* Global Base Box Model */
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Checkout Page Grid Layout */
+    .checkout-grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 1.5rem;
+      width: 100%;
+    }
+
+    .checkout-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      width: 100%;
+      min-width: 0; /* Prevents overflow from stretching parent grid */
+    }
+
+    /* Table Container Styling */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .checkout-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .checkout-table th, 
+    .checkout-table td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #334155;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================
+       MOBILE RESPONSIVE BREAKPOINT (<= 768px)
+       ========================================== */
+    @media screen and (max-width: 768px) {
+      .checkout-grid-container {
+        grid-template-columns: 1fr !important; /* Force Single Column Stack */
+        gap: 15px;
+      }
+
+      .checkout-card {
+        padding: 1rem;
+      }
+
+      .checkout-table th, 
+      .checkout-table td {
+        padding: 8px 4px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Navigation -->
+  <nav class="navbar">
+    <h2><a href="home.html" style="color: inherit; text-decoration: none;">CartCrush</a></h2>
+    
+    <div class="nav-controls">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="checkout.html" class="nav-link active">
+        Cart (<span id="cart-count">0</span>)
+      </a>
+      <a href="my-orders.html" class="nav-link">Track Order</a>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container" style="max-width: 1100px; margin: 2rem auto; padding: 0 15px;">
+    <h2>Shopping Cart & Checkout</h2>
+
+    <!-- Checkout Grid Wrapper -->
+    <div class="checkout-grid-container">
+      
+      <!-- Column 1: Cart Items Section -->
+      <div class="checkout-card">
+        <h3>1. Selected Items</h3>
+        
+        <div class="table-responsive" style="margin-top: 1rem;">
+          <table class="checkout-table">
+            <thead>
+              <tr style="background: #f8fafc;">
+                <th>Item</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="cartTableBody">
+              <!-- Dynamically populated via checkout.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="border-top: 2px solid #e2e8f0; padding-top: 1rem; margin-top: 1rem; text-align: right;">
+          <h4>Grand Total: <span id="cartGrandTotal" style="color: #2563eb;">Rs. 0</span></h4>
+        </div>
+      </div>
+
+      <!-- Column 2: Delivery & Payment Details Form -->
+      <div class="checkout-card">
+        <h3>2. Delivery & Payment Details</h3>
+        
+        <form id="checkoutForm" style="margin-top: 1rem;">
+          <div class="form-group">
+            <label for="custName">Full Name *</label>
+            <input type="text" id="custName" class="form-input" required placeholder="Enter full name">
+          </div>
+
+          <div class="form-group">
+            <label for="custPhone">Phone Number *</label>
+            <input type="tel" id="custPhone" class="form-input" required placeholder="03XXXXXXXXX">
+          </div>
+
+          <div class="form-group">
+            <label for="custAddress">Delivery Address *</label>
+            <textarea id="custAddress" class="form-input" style="height: 80px; resize: vertical;" required placeholder="Complete residential address"></textarea>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="paymentMethod">Payment Method *</label>
+            <select id="paymentMethod" class="form-input" style="background: white;">
+              <option value="COD">Cash on Delivery (COD)</option>
+              <option value="JazzCash">JazzCash / Easypaisa</option>
+              <option value="Card">Debit / Credit Card</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-success" style="width: 100%; padding: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; background: #16a34a; color: #fff; border: none; border-radius: 6px;">
+            Place Order Now ➔
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="js/checkout.js"></script>
+</body>
+</html>

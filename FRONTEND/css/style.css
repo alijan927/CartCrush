@@ -1,0 +1,1699 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background: #f8f9fa; color: #333; line-height: 1.6; }
+
+/* Navbar */
+.navbar { background: #1e293b; color: white; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; }
+.navbar a { color: white; text-decoration: none; margin-left: 1rem; font-weight: 500; }
+.navbar a:hover { color: #38bdf8; }
+
+/* Container */
+.container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+
+/* Product Grid */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+.product-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
+.product-card:hover { transform: translateY(-4px); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.product-info { padding: 1rem; }
+.product-price { color: #16a34a; font-weight: bold; font-size: 1.2rem; margin: 0.5rem 0; }
+
+/* Buttons */
+.btn { display: inline-block; background: #2563eb; color: white; padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; font-size: 0.95rem; text-align: center; }
+.btn:hover { background: #1d4ed8; }
+.btn-success { background: #16a34a; }
+.btn-success:hover { background: #15803d; }
+.btn-danger { background: #dc2626; }
+.btn-danger:hover { background: #b91c1c; }
+
+/* Form Card */
+.form-card { background: white; max-width: 450px; margin: 3rem auto; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; }
+.form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+
+/* Table */
+.data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.data-table th, .data-table td { padding: 0.8rem 1rem; border-bottom: 1px solid #eee; text-align: left; }
+.data-table th { background: #f1f5f9; font-weight: 600; }
+
+/* Cart Drawer / Sidebar */
+.cart-summary { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.badge { background: #ef4444; color: white; border-radius: 50%; padding: 0.2rem 0.5rem; font-size: 0.75rem; vertical-align: top; }
+
+/* Filter & Search Bar Layout */
+.filter-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.search-input, .category-select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input { flex: 2; min-width: 200px; }
+.category-select { flex: 1; min-width: 150px; background: white; }
+.search-input:focus, .category-select:focus { border-color: #2563eb; }
+
+/* Toast Notification Styles */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toast {
+  min-width: 250px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-in 2.7s forwards;
+}
+.toast-success { background-color: #16a34a; }
+.toast-error { background-color: #dc2626; }
+.toast-info { background-color: #2563eb; }
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ==================== ADMIN DASHBOARD RESPONSIVE STYLES ==================== */
+
+.admin-container {
+  max-width: 1200px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+.admin-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.card-title {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: #1e293b;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.price-input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.price-input-group input {
+  flex: 2;
+  min-width: 0;
+}
+
+.price-input-group select {
+  flex: 1;
+  min-width: 90px;
+}
+
+.hint-text {
+  color: #2563eb;
+  font-weight: 500;
+  display: block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+.textarea-input {
+  width: 100%;
+  height: 80px;
+  resize: vertical;
+}
+
+/* Dual Image Options Box */
+.dual-image-box {
+  background: #f8fafc;
+  padding: 1rem;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.dual-image-box h4 {
+  margin-bottom: 0.75rem;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.dual-image-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.divider-text {
+  text-align: center;
+  font-weight: bold;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 200px;
+  padding: 0.75rem 1.5rem;
+}
+
+/* Table Header & Responsiveness */
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.currency-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.currency-switcher label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px; /* Prevents text squishing on mobile screens */
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 10px;
+}
+
+.admin-table th {
+  background: #f1f5f9;
+  border-bottom: 2px solid #e2e8f0;
+  color: #475569;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Mobile Responsive Breakpoints */
+@media (max-width: 768px) {
+  .admin-container {
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .admin-card {
+    padding: 1rem;
+  }
+
+  .dual-image-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .divider-text {
+    margin: 0.25rem 0;
+  }
+
+  .submit-btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .currency-switcher {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .currency-switcher select {
+    flex: 1;
+  }
+}
+
+/* ==================== HERO BANNER WITH BLURRED BG ==================== */
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  padding: 5rem 1.5rem;
+  text-align: center;
+  border-bottom: 4px solid #2563eb;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Background Image & Blur Layer */
+.hero-bg-overlay {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  /* Aap yahan apni pasand ki koi bhi image URL ya local file path daal sakte hain */
+  background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  /* Blur effect apply karne ke liye */
+  filter: blur(8px) brightness(0.4);
+  z-index: 1;
+  transform: scale(1.05); /* Margins par white edges ko prevent karne ke liye */
+}
+
+/* Content Container above background */
+.hero-content {
+  position: relative;
+  z-index: 2; /* Text ko blurred image ke upar rakhta hai */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.brand-highlight {
+  color: #60a5fa;
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  color: #f1f5f9;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+
+.hero-btn {
+  display: inline-block;
+  background-color: #2563eb;
+  color: #ffffff;
+  padding: 0.85rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 3rem 1rem;
+  }
+
+  .hero-content h1 {
+    font-size: 1.85rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+  }
+}
+/* ==================== FEATURED / SPONSORED ADS STYLES ==================== */
+
+.featured-wrapper {
+  background: #fefce8;
+  border: 2px solid #fef08a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2.5rem;
+}
+
+.section-title-box h2 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.section-title-box p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.featured-card {
+  position: relative;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2) !important;
+  background: #ffffff;
+}
+
+.sponsored-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #d97706;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 5;
+}
+
+/* Responsive Styles for Checkout & Cart Page */
+
+/* Mobile & Small Screen Optimizations */
+@media screen and (max-width: 768px) {
+  .admin-grid {
+    grid-template-columns: 1fr !important; /* Single column layout for mobile */
+    gap: 1.5rem !important;
+  }
+
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .admin-card {
+    padding: 1rem !important;
+  }
+
+  /* Table Horizontal Scroll for Mobile */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-table {
+    min-width: 480px; /* Minimum width to prevent table squash */
+  }
+
+  .admin-table th, 
+  .admin-table td {
+    padding: 8px 6px !important;
+    font-size: 0.88rem;
+  }
+
+  /* Navbar Responsive Adjustments */
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .nav-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Extra Small Screens (Phones under 480px) */
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .admin-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    padding: 10px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+/* ==========================================
+   ADMIN PAGE & RESPONSIVE LAYOUTS
+   ========================================== */
+
+/* Admin Dashboard Container Setup */
+.admin-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Flex & Grid layouts responsiveness */
+.admin-grid, 
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Table Responsive Wrapper */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.table-responsive table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* Mobile par contents squish nahi honge */
+}
+
+/* Form Responsiveness */
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   MOBILE & TABLET BREAKPOINTS
+   ========================================== */
+
+/* Tablets & Small Laptops (Under 992px) */
+@media screen and (max-width: 992px) {
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+/* Mobile Screens (Under 768px) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .nav-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .admin-card {
+    padding: 1.2rem !important;
+  }
+
+  /* Form controls expand full width */
+  .admin-form-row {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  /* Buttons on mobile */
+  .btn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Action buttons inside table cells */
+  .table-responsive td .btn,
+  .table-responsive td button {
+    width: auto;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Small Mobiles (Under 480px) */
+@media screen and (max-width: 480px) {
+  h1, h2 {
+    font-size: 1.4rem;
+  }
+
+  .admin-container {
+    padding: 0.5rem;
+  }
+}
+
+/* Product Image Card Container & Uniform Image Styling */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Fixed Image Box with Equal Dimensions */
+.product-image-container,
+.product-card img {
+  width: 100%;
+  height: 200px; /* Sab images ki height bilkul barabar ho jayegi */
+  object-fit: cover; /* Image stretch nahi hogi, crop karke perfectly box mein fit ho jayegi */
+  object-position: center;
+  background-color: #f8fafc;
+}
+
+/* Admin Dashboard Table Product Thumbnails */
+.table-responsive img,
+.admin-table img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 25px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: #0f172a;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      background: #3b82f6;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #2563eb;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: #ffffff;
+      padding: 1.25rem;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .stat-card h3 {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-card p {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Card Panels */
+    .panel-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    .panel-card h2 {
+      font-size: 1.3rem;
+      color: #1e293b;
+      margin-bottom: 15px;
+    }
+
+    /* Form Styles */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: #3b82f6;
+    }
+
+    .btn-submit {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #059669;
+    }
+
+    /* Filter Controls */
+    .products-header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    /* Table Styles */
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 12px 10px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    td {
+      padding: 12px 10px;
+      font-size: 0.9rem;
+      vertical-align: middle;
+    }
+
+    /* Products Grid - 4 Columns Layout */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 1 Line mein exact 4 products */
+  gap: 20px; /* Products ke beech ka gap */
+  margin-top: 1rem;
+}
+
+/* Individual Product Card Styling */
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* Medium screens par 3 */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* Mobile screens par 2 */
+    gap: 12px;
+  }
+}
+
+/* ==========================================
+   GLOBAL RESPONSIVE BASE
+   ========================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* Screen se bahar horizontal scroll ko rokne ke liye */
+}
+
+/* ==========================================
+   PRODUCT GRID (Auto Flexible Layout)
+   ========================================== */
+#productsContainer, .products-grid {
+  display: grid;
+  /* Min 250px width rakhega, screen choti hone par auto columns adjust kar dega */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* ==========================================
+   TABLET & SMALL DESKTOP (Max Width: 1024px)
+   ========================================== */
+@media (max-width: 1024px) {
+  .container {
+    width: 92%;
+    padding: 0 15px;
+  }
+}
+
+/* ==========================================
+   MOBILE DEVICES (Max Width: 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  
+  /* 1. Navbar Adjustments */
+  .navbar, nav {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* 2. Search & Filter Section */
+  .search-filter-container, .controls {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  #searchInput, #categoryFilter {
+    width: 100% !important;
+  }
+
+  /* 3. Product Cards */
+  #productsContainer, .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* Mobile par 2 cards ek line mein */
+    gap: 12px;
+  }
+
+  .product-card {
+    padding: 10px !important;
+  }
+
+  .product-card img {
+    height: 140px !important; /* Mobile Screen par image size perfect dikhegi */
+  }
+
+  /* 4. Cart & Checkout Pages */
+  .cart-container, .checkout-container {
+    flex-direction: column;
+  }
+
+  .cart-table, .cart-table thead {
+    display: none; /* Mobile par tables wrap karne ke liye */
+  }
+
+  .cart-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+  }
+
+  /* 5. Forms (Admin / Checkout Inputs) */
+  form input, form select, form textarea {
+    width: 100%;
+  }
+}
+
+/* ==========================================
+   EXTRA SMALL MOBIL (Max Width: 480px)
+   ========================================== */
+@media (max-width: 480px) {
+  #productsContainer, .products-grid {
+    grid-template-columns: 1fr; /* Bohot choti screen par 1 card per line */
+  }
+}
+
+/* ==========================================
+   CART & CHECKOUT RESPONSIVE LAYOUT
+   ========================================== */
+
+/* Main Container Layout (Flexbox Desktop) */
+.cart-container,
+.checkout-container {
+  display: flex;
+  gap: 25px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 15px;
+  align-items: flex-start;
+}
+
+/* Left Sections */
+.cart-items-section,
+.checkout-form-section {
+  flex: 2;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Right Sections (Order Summary Sticky Sidebar) */
+.cart-summary-section,
+.checkout-summary-section {
+  flex: 1;
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 20px;
+}
+
+/* Cart Item Styling */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.cart-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex: 1;
+}
+
+.cart-item-title {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #1e293b;
+}
+
+.cart-item-price {
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+/* Quantity Control Buttons */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  background: #e2e8f0;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #ef4444;
+}
+
+/* Summary Rows */
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 12px 0;
+  color: #475569;
+}
+
+.total-row {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+/* Buttons & Form Inputs */
+.btn-primary {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.payment-option {
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   MOBILE & TABLET BREAKPOINT (Max Width: 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  .cart-container,
+  .checkout-container {
+    flex-direction: column; /* Columns ko ek k upar ek shift karega */
+  }
+
+  .cart-items-section,
+  .checkout-form-section,
+  .cart-summary-section,
+  .checkout-summary-section {
+    width: 100%; /* Mobile screen par full width */
+  }
+
+  /* Mobile Cart Item Adjustments */
+  .cart-item {
+    align-items: flex-start;
+  }
+
+  .cart-item-img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .cart-item-title {
+    font-size: 0.95rem;
+  }
+}
+
+/* Default Desktop (2 Columns) */
+    .admin-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2rem !important;
+    }
+
+    /* Mobile & Tablet View Fix (768px se choti screens par) */
+    @media screen and (max-width: 768px) {
+      .admin-grid {
+        grid-template-columns: 1fr !important; /* Single Column Stacked */
+        gap: 1.5rem !important;
+      }
+
+      .container {
+        margin-top: 1rem !important;
+        padding: 0 10px !important;
+      }
+
+      .admin-card {
+        padding: 1rem !important;
+      }
+
+      /* Mobile Par Table Horizontal Scroll Fix */
+      .table-responsive {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Table text small on mobile */
+      .admin-table th, .admin-table td {
+        padding: 8px 4px !important;
+        font-size: 0.85rem !important;
+      }
+    }
+
+    /* ==========================================
+   TRACK ORDER / MY ORDERS RESPONSIVE FIX
+   ========================================== */
+.track-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 15px;
+}
+
+.track-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.track-card h2 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #0f172a;
+}
+
+.track-card p {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.track-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.track-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.track-btn {
+  padding: 12px 24px;
+  font-weight: bold;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Dynamic Order Result Box */
+#orderResult {
+  border-top: 2px solid #f1f5f9;
+  padding-top: 1.5rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Responsive Breakpoint */
+@media screen and (max-width: 768px) {
+  .track-container {
+    margin: 1.5rem auto;
+    padding: 0 10px;
+  }
+
+  .track-card {
+    padding: 1.25rem;
+  }
+
+  .track-form {
+    flex-direction: column;
+  }
+
+  .track-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================
+   ORDER SUCCESS PAGE RESPONSIVE STYLES
+   ========================================== */
+.success-container {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 0 15px;
+}
+
+.success-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.success-icon {
+  font-size: 3.5rem;
+  color: #10b981;
+  margin-bottom: 1rem;
+}
+
+.success-card h2 {
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.success-card p {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Order ID Copy Box */
+.copy-id-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 2rem;
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  align-items: center;
+}
+
+.copy-id-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2563eb;
+  text-align: center;
+  outline: none;
+  width: 100%;
+}
+
+.copy-btn {
+  padding: 10px 18px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+/* Action Buttons Wrapper */
+.action-buttons-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn-primary {
+  text-decoration: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+}
+
+.action-btn-secondary {
+  text-decoration: none;
+  padding: 12px 24px;
+  background: #e2e8f0;
+  color: #334155;
+  font-weight: bold;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Mobile Breakpoint (<= 768px) */
+@media screen and (max-width: 768px) {
+  .success-container {
+    margin: 2rem auto;
+    padding: 0 10px;
+  }
+
+  .success-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .copy-id-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .copy-id-input {
+    font-size: 1rem;
+  }
+
+  .copy-btn {
+    width: 100%;
+  }
+
+  .action-buttons-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .action-btn-primary,
+  .action-btn-secondary {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/* ==========================================
+   ADMIN DASHBOARD RESPONSIVE STYLES
+   ========================================== */
+.admin-wrapper {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 15px;
+}
+
+/* Stats Cards Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stat-value.revenue { color: #10b981; }
+.stat-value.orders { color: #3b82f6; }
+.stat-value.products { color: #6366f1; }
+
+/* Admin Container & Cards */
+.admin-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  color: #0f172a;
+  font-size: 1.25rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.75rem;
+}
+
+/* Form Styles */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.4rem;
+}
+
+.price-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.price-input-group input {
+  flex: 1;
+}
+
+.price-input-group select,
+.category-select {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.hint-text {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.textarea-input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Dual Image Option Box */
+.dual-image-box {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.dual-image-box h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.dual-image-grid {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-option {
+  flex: 1;
+}
+
+.divider-text {
+  font-weight: bold;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.submit-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  background: #16a34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Table Controls & Switchers */
+.table-header {
+  margin-bottom: 1rem;
+}
+
+.products-header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.products-filter-controls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.products-filter-controls input,
+.products-filter-controls select {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.currency-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-top: 0.5rem;
+}
+
+/* Tables Styling */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.admin-table thead tr {
+  background: #f8fafc;
+  color: #475569;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.refresh-btn {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ==========================================
+   MOBILE BREAKPOINTS (<= 768px)
+   ========================================== */
+@media screen and (max-width: 768px) {
+  .admin-wrapper {
+    padding: 0 10px;
+    margin: 1rem auto;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dual-image-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .divider-text {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .products-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .products-filter-controls {
+    flex-direction: column;
+  }
+
+  .products-filter-controls input {
+    min-width: 100% !important;
+  }
+}

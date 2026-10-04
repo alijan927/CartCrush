@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CartCrush - Track Order</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar Navigation -->
+  <nav class="navbar">
+    <h2><a href="home.html" style="color: inherit; text-decoration: none;">CartCrush</a></h2>
+    
+    <div class="nav-controls">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="checkout.html" class="nav-link">
+        Cart (<span id="cart-count">0</span>)
+      </a>
+      <a href="my-orders.html" class="nav-link active">Track Order</a>
+    </div>
+  </nav>
+
+  <!-- Track Order Container -->
+  <div class="track-container">
+    <div class="track-card">
+      <h2>Track Your Order</h2>
+      <p>Enter your Order ID below to view status and details.</p>
+
+      <!-- Search Input Form -->
+      <form id="trackOrderForm" class="track-form">
+        <input 
+          type="text" 
+          id="orderIdInput" 
+          class="track-input" 
+          placeholder="Paste Order ID here (e.g. 66f... or ORD-123456)" 
+          required
+        >
+        <button type="submit" class="track-btn">
+          Track Order
+        </button>
+      </form>
+
+      <!-- Order Result Card -->
+      <div id="orderResult" style="display: none;">
+        <!-- Dynamic content rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script src="js/my-orders.js"></script>
+</body>
+</html>
